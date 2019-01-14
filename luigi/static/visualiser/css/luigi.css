@@ -158,6 +158,10 @@ td.details-control {
   cursor: pointer;
 }
 
+td.task-control {
+  cursor: pointer;
+}
+
 span.status-icon {
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;

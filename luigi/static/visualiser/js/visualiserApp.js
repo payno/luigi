@@ -1224,6 +1224,14 @@ function visualiserApp(luigi) {
                     render: function (data, type, row) {
                         return Mustache.render(templates.actionsTemplate, row);
                     }
+                },
+                {
+                    className: 'task-control',
+                    orderable: false,
+                    data: null,
+                    render: function (data, type, row) {
+                        return Mustache.render(templates.actionsTemplate, row);
+                    }
                 }
             ]
         });
@@ -1274,6 +1282,18 @@ function visualiserApp(luigi) {
         } );
 
         $('#taskTable tbody').on('click', 'td.details-control .re-enable-button', function (ev) {
+            var that = $(this);
+            luigi.reEnable(that.attr("data-task-id"), function(data) {
+                if (ev.altKey) {
+                    updateTasks(); // update may not be cheap
+                } else {
+                    that.tooltip('hide');
+                    that.remove();
+                }
+            });
+        });
+
+        $('#taskTable tbody').on('click', 'td.task-control .re-enable-button', function (ev) {
             var that = $(this);
             luigi.reEnable(that.attr("data-task-id"), function(data) {
                 if (ev.altKey) {
