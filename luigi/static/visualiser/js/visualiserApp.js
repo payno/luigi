@@ -1315,9 +1315,13 @@ function visualiserApp(luigi) {
             showSchedulerMessageModal(data);
         });
 
-        $('#taskTable tbody').on('click', 'td.task-control', '.restart', function () {
+        $('#taskTable tbody').on('click', 'td.task-control .restart', function () {
             var that = $(this);
-            luigi.restartTask(that.attr("data-task-id"));
+
+            var data_task_id = that.attr("data-task-id")
+            window.alert(that.data)
+
+            luigi.restartTask(data_task_id);
         });
 
         $('.navbar-nav').on('click', 'a', function () {

@@ -961,6 +961,11 @@ class Scheduler(object):
         self._email_batcher.add_scheduling_fail(task_name, family, unbatched_params, expl, owners)
 
     @rpc_method()
+    def restart_task(self, task):
+        print(' In python server callback')
+        print('require task restart of %s' % str(task))
+
+    @rpc_method()
     def add_worker(self, worker, info, **kwargs):
         self._state.get_worker(worker).add_info(info)
 

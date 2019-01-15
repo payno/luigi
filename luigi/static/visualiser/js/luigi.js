@@ -159,7 +159,6 @@ var LuigiAPI = (function() {
     };
 
     LuigiAPI.prototype.restartTask = function(taskId) {
-        console.log('pass by restartTask');
         jsonRPC(this.urlRoot + "/restart_task", {'task': taskId});
     };
 
