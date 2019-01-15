@@ -1315,6 +1315,11 @@ function visualiserApp(luigi) {
             showSchedulerMessageModal(data);
         });
 
+        $('#taskTable tbody').on('click', 'td.task-control', '.restart', function () {
+            var that = $(this);
+            luigi.restartTask(that.attr("data-task-id"));
+        });
+
         $('.navbar-nav').on('click', 'a', function () {
             var tabName = $(this).data('tab');
             updateSidebar(tabName);

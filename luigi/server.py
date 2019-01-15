@@ -115,6 +115,7 @@ class RPCHandler(tornado.web.RequestHandler):
             return
         payload = self.get_argument('data', default="{}")
         arguments = json.loads(payload)
+        print('get with %s' % method)
 
         if hasattr(self._scheduler, method):
             result = getattr(self._scheduler, method)(**arguments)
@@ -168,6 +169,14 @@ class RPCHandler(tornado.web.RequestHandler):
             self.set_header('Access-Control-Allow-Credentials', 'true')
         if self._cors_config.exposed_headers:
             self.set_header('Access-Control-Expose-Headers', self._cors_config.exposed_headers)
+
+
+class RunHandler(tornado.web.RequestHandler):
+    """
+    TODO
+    """
+    def get(self):
+        logger.warning('RunHandler has beed activated')
 
 
 class BaseTaskHistoryHandler(tornado.web.RequestHandler):

@@ -158,6 +158,11 @@ var LuigiAPI = (function() {
         });
     };
 
+    LuigiAPI.prototype.restartTask = function(taskId) {
+        console.log('pass by restartTask');
+        jsonRPC(this.urlRoot + "/restart_task", {'task': taskId});
+    };
+
     LuigiAPI.prototype.sendSchedulerMessage = function(workerId, taskId, content, callback) {
         var data = {worker: workerId, task: taskId, content: content};
         jsonRPC(this.urlRoot + "/send_scheduler_message", data, function(response) {
