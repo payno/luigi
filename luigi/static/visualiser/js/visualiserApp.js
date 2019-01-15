@@ -1319,8 +1319,6 @@ function visualiserApp(luigi) {
             var that = $(this);
 
             var data_task_id = that.attr("data-task-id")
-            window.alert(that.data)
-
             luigi.restartTask(data_task_id);
         });
 
