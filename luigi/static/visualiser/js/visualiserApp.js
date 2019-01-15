@@ -1230,7 +1230,7 @@ function visualiserApp(luigi) {
                     orderable: false,
                     data: null,
                     render: function (data, type, row) {
-                        return Mustache.render(templates.actionsTemplate, row);
+                        return Mustache.render(templates.controlTemplate, row);
                     }
                 }
             ]

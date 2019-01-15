@@ -31,37 +31,23 @@
 
         <script type="text/template" name="actionsTemplate">
             <div class="span2">
-                <a href="#tab=graph&taskId={{encodedTaskId}}&hideDone=1" class="btn btn-info btn-xs" title="View graph 5" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
+                <a href="#tab=graph&taskId={{encodedTaskId}}&hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip"><i class="fa fa-sitemap"></i></a>
                 {{#error}}<button class="btn btn-danger btn-xs showError" title="Show error" data-toggle="tooltip"><i class="fa fa-bug"></i></button>{{/error}}
                 {{#error}}<button class="btn btn-warning btn-xs forgiveFailures" title="Forgive failures" data-toggle="tooltip"><i class="fa fa-ambulance"></i></button>{{/error}}
                 {{#re_enable}}<button class="btn btn-danger btn-xs showError" title="Show error" data-toggle="tooltip"><i class="fa fa-bug"></i></button>{{/re_enable}}
                 {{#re_enable}}<a class="btn btn-warning btn-xs re-enable-button" title="Re-enable" data-toggle="tooltip" data-task-id="{{taskId}}">Re-enable</a>{{/re_enable}}
-                {{#trackingUrl}}<a target="_blank" href="{{trackingUrl}}" class="btn btn-primary btn-xs" title="Track Progress" data-toggle="tooltip"><i class="fa fa-eye"></i></a>{{/trackingUrl}}
+                {{#trackingUrl}}<a target="_blank" href="{{trackingUrl}}" class="btn btn-primary btn-xs" title="Track Progress" data-toggle="tooltip"><i class="fa fa-repeat"></i></a>{{/trackingUrl}}
                 {{#statusMessage}}<button class="btn btn-primary btn-xs statusMessage" title="Status message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}"><i class="fa fa-comment"></i></button>{{/statusMessage}}
                 {{^statusMessage}}
                   {{#progressPercentage}}<button class="btn btn-primary btn-xs statusMessage" title="Status message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}"><i class="fa fa-comment"></i></button>
                   {{/progressPercentage}}
                 {{/statusMessage}}
                 {{#acceptsMessages}}<button class="btn btn-success btn-xs schedulerMessage" title="Send message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}" data-worker="{{workerIdRunning}}"><i class="fa fa-paper-plane"></i></button>{{/acceptsMessages}}
-            </div>
-            <div class="span4">
-                <a class="btn btn-warning btn-xs restart" data-toggle="tooltip" data-task-id="{{taskId}}"><i class="fa fa-eye"></i></a>
             </div>
         </script>
         <script type="text/template" name="controlTemplate">
             <div class="span3">
-                <a href="#tab=graph&taskId={{encodedTaskId}}&hideDone=1" class="btn btn-info btn-xs" title="Control task" data-toggle="tooltip"><i class="fa fa-eye"></i></a>
-                {{#error}}<button class="btn btn-danger btn-xs showError" title="Show error" data-toggle="tooltip"><i class="fa fa-bug"></i></button>{{/error}}
-                {{#error}}<button class="btn btn-warning btn-xs forgiveFailures" title="Forgive failures" data-toggle="tooltip"><i class="fa fa-ambulance"></i></button>{{/error}}
-                {{#re_enable}}<button class="btn btn-danger btn-xs showError" title="Show error" data-toggle="tooltip"><i class="fa fa-bug"></i></button>{{/re_enable}}
-                {{#re_enable}}<a class="btn btn-warning btn-xs re-enable-button" title="Re-enable" data-toggle="tooltip" data-task-id="{{taskId}}">Re-enable</a>{{/re_enable}}
-                {{#trackingUrl}}<a target="_blank" href="{{trackingUrl}}" class="btn btn-primary btn-xs" title="Track Progress" data-toggle="tooltip"><i class="fa fa-eye"></i></a>{{/trackingUrl}}
-                {{#statusMessage}}<button class="btn btn-primary btn-xs statusMessage" title="Status message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}"><i class="fa fa-comment"></i></button>{{/statusMessage}}
-                {{^statusMessage}}
-                  {{#progressPercentage}}<button class="btn btn-primary btn-xs statusMessage" title="Status message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}"><i class="fa fa-comment"></i></button>
-                  {{/progressPercentage}}
-                {{/statusMessage}}
-                {{#acceptsMessages}}<button class="btn btn-success btn-xs schedulerMessage" title="Send message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}" data-worker="{{workerIdRunning}}"><i class="fa fa-paper-plane"></i></button>{{/acceptsMessages}}
+                <a class="btn btn-warning btn-xs restart" data-toggle="tooltip" data-task-id="{{taskId}}"><i class="fa fa-repeat"></i></a>
             </div>
         </script>
         <script type="text/template" name="errorTemplate">
@@ -254,7 +240,7 @@
                           {{#acceptsMessages}}<button class="btn btn-success btn-xs schedulerMessage" title="Send message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}" data-worker="{{workerIdRunning}}"><i class="fa fa-paper-plane"></i></button>
                           {{/acceptsMessages}}
                         </td>
-                        <td><a class="btn btn-info btn-xs" title="View something" data-toggle="tooltip" data-target="#runTask" task-id="{{encodedTaskId}}"><i class="fa fa-eye"/></a>
+                        <td><a class="btn btn-info btn-xs" title="View something" data-toggle="tooltip" data-target="#runTask" task-id="{{encodedTaskId}}"><i class="fa fa-repeat"/></a>
                           {{#trackingUrl}}<a target="_blank" href="{{trackingUrl}}" class="btn btn-primary btn-xs" title="Track Progress" data-toggle="tooltip"><i class="fa fa-eye"></i></a>{{/trackingUrl}}
                           {{#statusMessage}}<button class="btn btn-primary btn-xs statusMessage" title="Status message" data-toggle="tooltip" data-task-id="{{taskId}}" data-display-name="{{displayName}}"><i class="fa fa-comment"></i></button>{{/statusMessage}}
                           {{^statusMessage}}
@@ -347,7 +333,7 @@
                                 <td>{{priority}}</td>
                                 <td>{{displayTime}}</td>
                                 <td><a href="#tab=graph&taskId={{taskId}}&hideDone=1" class="btn btn-info btn-xs" title="View graph" data-toggle="tooltip" data-action="drawGraph"><i class="fa fa-sitemap"/></a></td>
-                                <td><a href="#tab=graph&taskId={{taskId}}&hideDone=1" class="btn btn-info btn-xs" title="Control task" data-toggle="tooltip" data-action="drawTaskControl"><i class="fa fa-eye"/></a></td>
+                                <td><a class="btn btn-info btn-xs" title="Control task" data-toggle="tooltip" data-action="drawTaskControl"><i class="fa fa-repeat"/></a></td>
                             </tr>
                             {{/tasks}}
                         </tbody>
