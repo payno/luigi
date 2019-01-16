@@ -52,6 +52,8 @@ from luigi.parameter import ParameterVisibility
 
 from luigi.metrics import MetricsCollectors
 
+import subprocess
+
 logger = logging.getLogger(__name__)
 
 UPSTREAM_RUNNING = 'UPSTREAM_RUNNING'
@@ -962,8 +964,39 @@ class Scheduler(object):
 
     @rpc_method()
     def restart_task(self, task):
-        print(' In python server callback')
-        print('require task restart of %s' % str(task))
+        task = self._state.get_task(task)
+        task.status = "PENDING"
+        command_line = ['luigi', ]
+        run_params = [task.family, ]
+
+        if task.module and task.module != '':
+            run_params.append('--module')
+            run_params.append(task.module)
+            command_line.append('--module')
+            command_line.append(task.module)
+        # TODO: create new random worker
+        for key, value in task.public_params.items():
+            run_params.append('--' + key.replace('_', '-'))
+            run_params.append(value)
+            command_line.append('--' + key.replace('_', '-'))
+            command_line.append(value)
+
+        command_line.append(task.family)
+        # warning: we are forced to use a subprocess because we can't use Thread
+        # because we ar enot necessarly in the main thread and bring issues
+        # We cannot use import luigi then luigi.run because it waits for an
+        # answer from the server and for restart_task we are already on the
+        # server side...
+        subprocess.Popen(command_line,
+                         stdout=subprocess.PIPE,
+                         stderr=subprocess.PIPE)
+
+
+        # # for now we are forced to use a subprocess because fail to load the
+        # module used. Maybe they are making some nasty stuff with PYTHONPATH ?
+        # run_params.append(task.family)
+        # subprocess.call(run_params, stdout=subprocess.PIPE)
+        # or use luigi()
 
     @rpc_method()
     def add_worker(self, worker, info, **kwargs):
